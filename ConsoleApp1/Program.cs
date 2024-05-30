@@ -46,6 +46,74 @@ namespace VirtualPet
             Console.WriteLine("• Happiness: {0}", Happiness);
             Console.WriteLine("• Health: {0}", Health);
         }
-    }
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                Console.WriteLine("Please choose a type of pet:");
+                Console.WriteLine("1. Cat");
+                Console.WriteLine("2. Dog");
+                Console.WriteLine("3. Rabbit");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                string type = "";
+                switch (choice)
+                {
+                    case 1:
+                        type = "Cat";
+                        break;
+                    case 2:
+                        type = "Dog";
+                        break;
+                    case 3:
+                        type = "Rabbit";
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Defaulting to cat.");
+                        type = "cat";
+                        break;
+                }
 
+                Console.WriteLine("What would you like to name your {0}?", type);
+                string name = Console.ReadLine();
+
+                Pet pet = new Pet(name, type);
+                Console.WriteLine("Welcome, {0}! Let’s take good care of {1}.", name, name);
+
+                int userInput;
+                do
+                {
+                    Console.WriteLine("\nMain menu:");
+                    Console.WriteLine("1. Feed {0}", name);
+                    Console.WriteLine("2. Play with {0}", name);
+                    Console.WriteLine("3. Let {0} rest", name);
+                    Console.WriteLine("4. Check {0}’s status", name);
+                    Console.WriteLine("5. Exit");
+                    Console.Write("User input: ");
+                    userInput = Convert.ToInt32(Console.ReadLine());
+
+                    switch (userInput)
+                    {
+                        case 1:
+                            pet.Feed();
+                            break;
+                        case 2:
+                            pet.Play();
+                            break;
+                        case 3:
+                            pet.Rest();
+                            break;
+                        case 4:
+                            pet.CheckStatus();
+                            break;
+                        case 5:
+                            Console.WriteLine("Thank you for playing with {0}!", name);
+                            break;
+                        default:
+                            Console.WriteLine("Invalid input. Please try again.");
+                            break;
+                    }
+                } while (userInput != 5);
+            }
+        }
+    }
 }
